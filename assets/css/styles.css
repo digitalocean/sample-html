@@ -1,0 +1,32 @@
+:root {
+    --color: #000000;
+    --color-transparent: #00000022;
+}
+
+::selection {
+    background: var(--color-transparent);
+}
+
+html,
+body {
+    background: var(--color);
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+#color {
+    background: white;
+    color: var(--color);
+    font-size: 2.5rem;
+    font-weight: 300;
+    padding: 2.25rem 3rem;
+    font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, helvetica neue, helvetica, ubuntu, roboto, noto, segoe ui, arial, sans-serif;
+    cursor: text;
+}
