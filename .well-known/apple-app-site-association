@@ -1,13 +1,20 @@
 {
 	"applinks": {
 		"apps": [],
-		"details": [
-            {
+		"details": [{
 				"appID": "T73AL22VTL.com.rochedhs.floodlight",
 				"paths": ["*"]
 			},
 			{
 				"appID": "T73AL22VTL.com.rochedhs.floodlight-us",
+				"paths": ["*"]
+			},
+			{
+				"appID": "YKYY69KM98.com.rochedhs.floodlight",
+				"paths": ["*"]
+			},
+			{
+				"appID": "YKYY69KM98.com.rochedhs.floodlight-us",
 				"paths": ["*"]
 			}
 		]
