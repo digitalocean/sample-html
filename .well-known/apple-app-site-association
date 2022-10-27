@@ -1,10 +1,15 @@
 {
-  "webcredentials": {
-    "apps": [
-      "T73AL22VTL.com.rochedhs.floodlight",
-      "T73AL22VTL.com.rochedhs.floodlight-us",
-      "T73AL22VTL.com.rochedhs.floodlight-eu"
-     ]
-  }
+    "applinks": {
+        "apps": [],
+        "details": [
+            {
+                "appID": "T73AL22VTL.com.rochedhs.floodlight",
+                "paths": [ "*"]
+            },
+            {
+                "appID": "T73AL22VTL.com.rochedhs.floodlight-us",
+                "paths": [ "*" ]
+            }
+        ]
+    }
 }
-      
