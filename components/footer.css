@@ -20,16 +20,11 @@
   background-color: #D9D9D9;
 }
 .footer-logo {
+  border: 2px dashed rgba(120, 120, 120, 0.4);
   display: flex;
   max-width: var(--dl-size-size-maxwidth);
   align-items: flex-start;
   flex-direction: column;
-}
-.footer-image {
-  height: 2rem;
-}
-.footer-text {
-  margin-top: var(--dl-space-space-oneandhalfunits);
 }
 .footer-links-container {
   display: flex;
@@ -38,55 +33,7 @@
   justify-content: space-between;
 }
 .footer-container1 {
-  display: flex;
-  align-items: flex-start;
-  margin-right: 10rem;
-  flex-direction: row;
-  justify-content: space-between;
-}
-.footer-product-container {
-  flex: 0 0 auto;
-  display: flex;
-  align-items: flex-start;
-  margin-right: 10rem;
-  flex-direction: column;
-  justify-content: flex-start;
-}
-.footer-text06 {
-  font-weight: 700;
-  margin-bottom: var(--dl-space-space-oneandhalfunits);
-}
-.footer-text07 {
-  margin-bottom: var(--dl-space-space-unit);
-}
-.footer-text08 {
-  margin-bottom: var(--dl-space-space-unit);
-}
-.footer-text09 {
-  margin-bottom: var(--dl-space-space-unit);
-}
-.footer-company-container {
-  flex: 0 0 auto;
-  display: flex;
-  align-items: flex-start;
-  flex-direction: column;
-  justify-content: flex-start;
-}
-.footer-text11 {
-  color: var(--dl-color-gray-black);
-  font-weight: 700;
-  margin-bottom: var(--dl-space-space-oneandhalfunits);
-}
-.footer-text12 {
-  margin-bottom: var(--dl-space-space-unit);
-}
-.footer-text13 {
-  margin-bottom: var(--dl-space-space-unit);
-}
-.footer-text14 {
-  margin-bottom: var(--dl-space-space-unit);
-}
-.footer-container2 {
+  width: 603px;
   display: flex;
   align-items: flex-start;
   flex-direction: column;
@@ -99,16 +46,17 @@
   flex-direction: column;
   justify-content: flex-start;
 }
-.footer-text16 {
+.footer-text {
   color: var(--dl-color-gray-black);
   align-self: flex-start;
   font-weight: 700;
   margin-bottom: var(--dl-space-space-oneandhalfunits);
 }
-.footer-text17 {
-  margin-bottom: var(--dl-space-space-unit);
-}
 .footer-link {
+  margin-bottom: var(--dl-space-space-unit);
+  text-decoration: none;
+}
+.footer-link1 {
   text-decoration: none;
 }
 .footer-socials {
@@ -117,7 +65,7 @@
   flex-direction: column;
   justify-content: flex-start;
 }
-.footer-text18 {
+.footer-text1 {
   font-weight: 700;
   margin-bottom: var(--dl-space-space-oneandhalfunits);
 }
@@ -127,7 +75,7 @@
   flex-direction: row;
   justify-content: space-between;
 }
-.footer-link1 {
+.footer-link2 {
   display: contents;
 }
 .footer-icon {
@@ -142,7 +90,7 @@
   margin-bottom: var(--dl-space-space-twounits);
   background-color: var(--dl-color-gray-900);
 }
-.footer-text19 {
+.footer-text2 {
   align-self: center;
 }
 
@@ -150,12 +98,6 @@
 @media(max-width: 991px) {
   .footer-footer {
     flex-direction: column;
-  }
-  .footer-container1 {
-    margin-right: var(--dl-space-space-fourunits);
-  }
-  .footer-product-container {
-    margin-right: var(--dl-space-space-fourunits);
   }
 }
 @media(max-width: 767px) {
@@ -171,25 +113,11 @@
   .footer-logo {
     align-items: center;
   }
-  .footer-image {
-    margin-bottom: var(--dl-space-space-oneandhalfunits);
-  }
-  .footer-text {
-    margin-top: var(--dl-space-space-twounits);
-    text-align: center;
-    margin-bottom: var(--dl-space-space-twounits);
-  }
   .footer-links-container {
     width: 100%;
     align-items: flex-start;
     flex-direction: row;
     justify-content: center;
-  }
-  .footer-container1 {
-    margin-right: var(--dl-space-space-fourunits);
-  }
-  .footer-product-container {
-    margin-right: var(--dl-space-space-fourunits);
   }
 }
 @media(max-width: 479px) {
@@ -200,21 +128,11 @@
     align-items: center;
     flex-direction: column;
   }
-  .footer-image {
-    margin-bottom: 0px;
-  }
-  .footer-text {
-    margin-top: var(--dl-space-space-twounits);
-    margin-bottom: var(--dl-space-space-twounits);
-  }
   .footer-links-container {
     align-items: center;
     flex-direction: column;
   }
   .footer-container1 {
-    margin-right: 0px;
-  }
-  .footer-container2 {
     margin-top: var(--dl-space-space-oneandhalfunits);
     align-items: flex-start;
     margin-bottom: 0px;
@@ -223,7 +141,7 @@
     align-items: flex-start;
     margin-bottom: var(--dl-space-space-unit);
   }
-  .footer-text19 {
+  .footer-text2 {
     text-align: center;
   }
 }
