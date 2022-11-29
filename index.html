@@ -1,214 +1,200 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
     <title>Sanavid SA</title>
-    <meta property="og:title" content="Sanavid SA" />
 
-    <style data-tag="reset-style-sheet">
-      html {  line-height: 1.15;}body {  margin: 0;}* {  box-sizing: border-box;  border-width: 0;  border-style: solid;}p,li,ul,pre,div,h1,h2,h3,h4,h5,h6,figure,blockquote,figcaption {  margin: 0;  padding: 0;}button {  background-color: transparent;}button,input,optgroup,select,textarea {  font-family: inherit;  font-size: 100%;  line-height: 1.15;  margin: 0;}button,select {  text-transform: none;}button,[type="button"],[type="reset"],[type="submit"] {  -webkit-appearance: button;}button::-moz-focus-inner,[type="button"]::-moz-focus-inner,[type="reset"]::-moz-focus-inner,[type="submit"]::-moz-focus-inner {  border-style: none;  padding: 0;}button:-moz-focus,[type="button"]:-moz-focus,[type="reset"]:-moz-focus,[type="submit"]:-moz-focus {  outline: 1px dotted ButtonText;}a {  color: inherit;  text-decoration: inherit;}input {  padding: 2px 4px;}img {  display: block;}html { scroll-behavior: smooth  }
-    </style>
-    <style data-tag="default-style-sheet">
-      html {
-        font-family: Inter;
-        font-size: 16px;
-      }
 
-      body {
-        font-weight: 400;
-        font-style:normal;
-        text-decoration: none;
-        text-transform: none;
-        letter-spacing: normal;
-        line-height: 1.15;
-        color: var(--dl-color-gray-black);
-        background-color: var(--dl-color-gray-white);
+    <style>
+.CarouselItem{
+  width:80%;
+  height:300px;
+}
 
-      }
-    </style>
-    <link
-      rel="shortcut icon"
-      href="public/playground_assets/logo.jpg"
-      type="icon/png"
-      sizes="32x32"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&amp;display=swap"
-      data-tag="font"
-    />
-    <!--This is the head section-->
-    <!-- <style> ... </style> -->
-    <link rel="stylesheet" href="./style.css" />
+.colorOrange {
+  color: rgba(255,102,0,255);
+
+}
+
+
+.center {
+  margin: auto;
+  width: 80%;
+
+  padding: 10px;
+}
+
+
+
+</style>
   </head>
   <body>
-    <div>
-      <link href="./home.css" rel="stylesheet" />
+  
+    <!-- Optional JavaScript; choose one of the two! -->
 
-      <div class="home-container">
-        <header
-          data-role="Header"
-          class="custom-header-header custom-header-root-class-name"
-        >
-          <img
-            alt="logo"
-            src="/playground_assets/logo1-200h.jpg"
-            class="custom-header-image"
-          />
-          <div class="custom-header-nav">
-            <nav class="custom-top-menu-nav custom-top-menu-root-class-name10">
-              <a href="index.html" class="custom-top-menu-navlink">
-                <span>Inicio</span>
-              </a>
-              <a href="planes.html" class="custom-top-menu-navlink1">
-                <span>Planes</span>
-              </a>
-              <a href="sanatorios.html" class="custom-top-menu-navlink2">
-                <span>Prestadores</span>
-              </a>
-            </nav>
-          </div>
-          <div class="custom-header-btn-group"></div>
-          <div data-type="BurgerMenu" class="custom-header-burger-menu">
-            <svg viewBox="0 0 1024 1024" class="custom-header-icon">
-              <path
-                d="M128 554.667h768c23.552 0 42.667-19.115 42.667-42.667s-19.115-42.667-42.667-42.667h-768c-23.552 0-42.667 19.115-42.667 42.667s19.115 42.667 42.667 42.667zM128 298.667h768c23.552 0 42.667-19.115 42.667-42.667s-19.115-42.667-42.667-42.667h-768c-23.552 0-42.667 19.115-42.667 42.667s19.115 42.667 42.667 42.667zM128 810.667h768c23.552 0 42.667-19.115 42.667-42.667s-19.115-42.667-42.667-42.667h-768c-23.552 0-42.667 19.115-42.667 42.667s19.115 42.667 42.667 42.667z"
-              ></path>
-            </svg>
-          </div>
-          <div data-type="MobileMenu" class="custom-header-mobile-menu">
-            <div class="custom-header-nav1">
-              <div class="custom-header-container">
-                <img
-                  alt="image"
-                  src="https://presentation-website-assets.teleporthq.io/logos/logo.png"
-                  class="custom-header-image1"
-                />
-                <div
-                  data-type="CloseMobileMenu"
-                  class="custom-header-menu-close"
-                >
-                  <svg viewBox="0 0 1024 1024" class="custom-header-icon02">
-                    <path
-                      d="M810 274l-238 238 238 238-60 60-238-238-238 238-60-60 238-238-238-238 60-60 238 238 238-238z"
-                    ></path>
-                  </svg>
-                </div>
-              </div>
-              <nav
-                class="custom-top-menu-nav custom-top-menu-root-class-name11"
-              >
-                <a href="index.html" class="custom-top-menu-navlink">
-                  <span>Inicio</span>
-                </a>
-                <a href="planes.html" class="custom-top-menu-navlink1">
-                  <span>Planes</span>
-                </a>
-                <a href="sanatorios.html" class="custom-top-menu-navlink2">
-                  <span>Prestadores</span>
-                </a>
-              </nav>
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    -->
+
+
+    <ul class="nav nav-tabs " id="myTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active colorOrange" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Inicio</button>
+      </li>
+      <li class="nav-item  " role="presentation">
+        <button class="nav-link colorOrange" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Planes</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link colorOrange" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Convenios</button>
+      </li>
+
+      <li class="nav-item" role="presentation">
+        <button class="nav-link colorOrange" id="contact-tab" data-bs-toggle="tab" data-bs-target="#pagos" type="button" role="tab" aria-controls="contact" aria-selected="false">Formas de Pagos</button>
+      </li>
+       <li class="nav-item" role="presentation">
+        <button class="nav-link colorOrange" id="contact-tab" data-bs-toggle="tab" data-bs-target="#gm" type="button" role="tab" aria-controls="contact" aria-selected="false">Guía Médica </button>
+      </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+      <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+        <div class="center">
+        
+          <img src="Logo.jfif">
             </div>
-            <div>
-              <svg
-                viewBox="0 0 950.8571428571428 1024"
-                class="custom-header-icon04"
-              >
-                <path
-                  d="M925.714 233.143c-25.143 36.571-56.571 69.143-92.571 95.429 0.571 8 0.571 16 0.571 24 0 244-185.714 525.143-525.143 525.143-104.571 0-201.714-30.286-283.429-82.857 14.857 1.714 29.143 2.286 44.571 2.286 86.286 0 165.714-29.143 229.143-78.857-81.143-1.714-149.143-54.857-172.571-128 11.429 1.714 22.857 2.857 34.857 2.857 16.571 0 33.143-2.286 48.571-6.286-84.571-17.143-148-91.429-148-181.143v-2.286c24.571 13.714 53.143 22.286 83.429 23.429-49.714-33.143-82.286-89.714-82.286-153.714 0-34.286 9.143-65.714 25.143-93.143 90.857 112 227.429 185.143 380.571 193.143-2.857-13.714-4.571-28-4.571-42.286 0-101.714 82.286-184.571 184.571-184.571 53.143 0 101.143 22.286 134.857 58.286 41.714-8 81.714-23.429 117.143-44.571-13.714 42.857-42.857 78.857-81.143 101.714 37.143-4 73.143-14.286 106.286-28.571z"
-                ></path></svg
-              ><svg
-                viewBox="0 0 877.7142857142857 1024"
-                class="custom-header-icon06"
-              >
-                <path
-                  d="M585.143 512c0-80.571-65.714-146.286-146.286-146.286s-146.286 65.714-146.286 146.286 65.714 146.286 146.286 146.286 146.286-65.714 146.286-146.286zM664 512c0 124.571-100.571 225.143-225.143 225.143s-225.143-100.571-225.143-225.143 100.571-225.143 225.143-225.143 225.143 100.571 225.143 225.143zM725.714 277.714c0 29.143-23.429 52.571-52.571 52.571s-52.571-23.429-52.571-52.571 23.429-52.571 52.571-52.571 52.571 23.429 52.571 52.571zM438.857 152c-64 0-201.143-5.143-258.857 17.714-20 8-34.857 17.714-50.286 33.143s-25.143 30.286-33.143 50.286c-22.857 57.714-17.714 194.857-17.714 258.857s-5.143 201.143 17.714 258.857c8 20 17.714 34.857 33.143 50.286s30.286 25.143 50.286 33.143c57.714 22.857 194.857 17.714 258.857 17.714s201.143 5.143 258.857-17.714c20-8 34.857-17.714 50.286-33.143s25.143-30.286 33.143-50.286c22.857-57.714 17.714-194.857 17.714-258.857s5.143-201.143-17.714-258.857c-8-20-17.714-34.857-33.143-50.286s-30.286-25.143-50.286-33.143c-57.714-22.857-194.857-17.714-258.857-17.714zM877.714 512c0 60.571 0.571 120.571-2.857 181.143-3.429 70.286-19.429 132.571-70.857 184s-113.714 67.429-184 70.857c-60.571 3.429-120.571 2.857-181.143 2.857s-120.571 0.571-181.143-2.857c-70.286-3.429-132.571-19.429-184-70.857s-67.429-113.714-70.857-184c-3.429-60.571-2.857-120.571-2.857-181.143s-0.571-120.571 2.857-181.143c3.429-70.286 19.429-132.571 70.857-184s113.714-67.429 184-70.857c60.571-3.429 120.571-2.857 181.143-2.857s120.571-0.571 181.143 2.857c70.286 3.429 132.571 19.429 184 70.857s67.429 113.714 70.857 184c3.429 60.571 2.857 120.571 2.857 181.143z"
-                ></path></svg
-              ><svg
-                viewBox="0 0 602.2582857142856 1024"
-                class="custom-header-icon08"
-              >
-                <path
-                  d="M548 6.857v150.857h-89.714c-70.286 0-83.429 33.714-83.429 82.286v108h167.429l-22.286 169.143h-145.143v433.714h-174.857v-433.714h-145.714v-169.143h145.714v-124.571c0-144.571 88.571-223.429 217.714-223.429 61.714 0 114.857 4.571 130.286 6.857z"
-                ></path>
-              </svg>
-            </div>
-          </div>
-        </header>
-        <div class="home-container1"></div>
-        <div class="home-hero">
-          <div class="home-container2">
-            <h1 class="home-text">SANAVID SA</h1>
-            <span class="home-text1">
-              <span>
-                Sanavid S.A. Medicina Prepaga, Protegiendo la salud de tu
-                Familia
-              </span>
-              <span></span>
-              <span></span>
-            </span>
-            <div class="home-btn-group">
-              <button class="home-button button">Get Started</button>
-              <button class="home-button1 button">Learn More</button>
-            </div>
-          </div>
-        </div>
-        <footer class="footer-footer">
-          <div class="footer-container">
-            <div class="footer-logo"></div>
-            <div class="footer-links-container">
-              <div class="footer-container1">
-                <div class="footer-contact">
-                  <span class="footer-text textStyle">
-                    <span>Contacto</span>
-                  </span>
-                  <a
-                    href="mailto:sanavidsacde@gmail.com?subject=Comunicarme con un Asesor de Ventas"
-                    class="footer-link"
-                  >
-                    <span>sanavidsacde@gmail.com</span>
-                  </a>
-                  <a href="tel:+595985805600" class="footer-link1">
-                    <span>+595985 805600</span>
-                  </a>
-                </div>
-                <div class="footer-socials">
-                  <span class="footer-text1">
-                    <span>¡Síguenos en FACEBOOK!</span>
-                  </span>
-                  <div class="footer-icon-group">
-                    <a
-                      href="https://www.facebook.com/sanavids.a.medicinaprepaga"
-                      target="_blank"
-                      rel="noreferrer noopener"
-                      class="footer-link2"
-                    >
-                      <svg
-                        viewBox="0 0 602.2582857142856 1024"
-                        class="footer-icon"
-                      >
-                        <path
-                          d="M548 6.857v150.857h-89.714c-70.286 0-83.429 33.714-83.429 82.286v108h167.429l-22.286 169.143h-145.143v433.714h-174.857v-433.714h-145.714v-169.143h145.714v-124.571c0-144.571 88.571-223.429 217.714-223.429 61.714 0 114.857 4.571 130.286 6.857z"
-                        ></path>
-                      </svg>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="footer-separator"></div>
-          <span class="footer-text2">
-            <span>
-              Calle Humaita y Avda. Bernardino Caballero, Área 2, Ciudad del
-              Este, Paraguay
-            </span>
-          </span>
-        </footer>
       </div>
+      <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+        <div class="center">
+          <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active" data-bs-interval="10000">
+                <img src="a1.jfif" class="d-block w-100" alt="...">
+              </div>
+              <div class="carousel-item" data-bs-interval="2000">
+                <img src="a2.jfif" class="d-block w-100" alt="...">
+              </div>
+              <div class="carousel-item">
+                <img src="a3.jfif" class="d-block w-100" alt="...">
+              </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button> 
+          </div>
+      
+      
+      </div>
+        
+        ...</div>
+      <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+        <div class="center">
+          <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active" data-bs-interval="10000">
+                <img src="ConvenioAyacape.jfif" class="d-block w-100" alt="...">
+              </div>
+              <div class="carousel-item" data-bs-interval="2000">
+                <img src="ConvenioPolyClinic.jfif" class="d-block w-100" alt="...">
+              </div>
+              <div class="carousel-item">
+                <img src="a3.jfif" class="d-block w-100" alt="...">
+              </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+      
+      
+      </div>
+        
+      </div>
+      <div class="tab-pane fade" id="pagos" role="tabpanel" aria-labelledby="contact-tab">
+        <div class="center">
+          <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active" data-bs-interval="10000">
+                <img src="pagos.jfif" class="d-block w-100" alt="...">
+              </div>
+              <div class="carousel-item" data-bs-interval="2000">
+                <img src="a2.jfif" class="d-block w-100" alt="...">
+              </div>
+              <div class="carousel-item">
+                <img src="pagos.jfif" class="d-block w-100" alt="...">
+              </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+      </div>
+      </div>
+
+      <div class="tab-pane fade" id="gm" role="tabpanel" aria-labelledby="contact-tab">
+        <div class="center">
+          <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active" data-bs-interval="10000">
+                <img src="gm2.jpg" class="d-block w-100" alt="...">
+              </div>
+              <div class="carousel-item" data-bs-interval="2000">
+                <img src="gm1.jpg" class="d-block w-100" alt="...">
+              </div>
+              
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+      </div>
+      </div>
+
+
+
+
     </div>
-    <script
-      data-section-id="header"
-      src="https://unpkg.com/@teleporthq/teleport-custom-scripts"
-    ></script>
+
+
+
+
+
+
+
+
+
+  
+    </div>
+
+      
   </body>
 </html>
