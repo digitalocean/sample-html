@@ -1,14 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html l<!DOCTYPE html>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>#000000</title>
-    <link type="image/x-icon" rel="shortcut icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAHklEQVQ4T2NkYGD4z0ABYBw1gGE0DBhGw4BhWIQBAE5OEAELnjVHAAAAAElFTkSuQmCC">
-    <style>
-        :root {
+    <title>JSON Feed Viewer</title>
+</head>
+<body>
+    <label for="search-input">Search:</label>
+    <input type="text" id="search-input" onkeyup="search()">
+    <ul id="data-list"></ul>
+
+    <script>
+        // Replace this URL with your JSON feed URL
+        const jsonUrl = "https://coral-app-bfz2q.ondigitalocean.app/recent.json";
+
+        // Fetch the JSON feed and display the "all_domains" field for each item
+        fetch(jsonUrl)
+            .then(response => response.json())
+            .then(data => {
+                const dataList = document.getElementById("data-list");
+                data.forEach(item => {
+                    const domains = item.data.leaf_cert.all_domains;
+                    domains.forEach(domain => {
+                        const li = document.createElement("li");
+                        li.textContent = domain;
+                        dataList.appendChild(li);
+                    });
+                });
+            });
+
+        // Search function to filter the list by user input
+        function search() {
+            const input = document.getElementById("search-input");
+            const filter = input.value.toUpperCase();
+            const list = document.getElementById("data-list");
+            const items = list.getElementsByTagName("li");
+            for (let i = 0; i < items.length; i++) {
+                const text = items[i].textContent.toUpperCase();
+                if (text.indexOf(filter) > -1) {
+                    items[i].style.display = "";
+                } else {
+                    items[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+</body>
+</html>
+
             --color: #000000;
             --color-transparent: #00000022;
         }
