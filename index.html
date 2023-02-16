@@ -1,43 +1,129 @@
-<!DOCTYUncaught TypeError: Cannot read properties of null (reading 'addEventListener')
-    at ws.onmessage (watch.html:101:13)
-    <label for="search-input">Search:</label>
-    <input type="text" id="search-input" onkeyup="search()">
-    <ul id="data-list"></ul>
+<!DOCTYPE html>
+<html>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>WebSocket Example</title>
+    <style>
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+      th,
+      td {
+        text-align: left;
+        padding: 8px;
+      }
+      tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+    </style>
+  </head>
+  <body>
+    <form>
+      <label for="keyword">Filter by keyword:</label>
+      <input type="text" id="keyword" name="keyword" />
+      <button type="button" onclick="filterTable()">Filter</button>
+    </form>
+    <br />
+<table id="domainTable">
+  <thead>
+    <tr>
+      <th>Domain</th>
+    </tr>
+  </thead>
+  <tbody id="domainTableBody"></tbody>
+</table>
+<script>
+  const tableBody = document.querySelector("table tbody");
+  const keywordInput = document.getElementById("keyword");
+  const tableData = [];
 
-    <script>
-        // Replace this URL with your JSON feed URL
-        const jsonUrl = "https://lionfish-app-pp4su.ondigitalocean.app/latest.json";
+  function createTableRows(allDomains) {
+    tableBody.innerHTML = "";
+    allDomains.forEach((domains) => {
+      domains.forEach((domain) => {
+        const row = document.createElement("tr");
+        const domainCell = document.createElement("td");
+        domainCell.textContent = domain;
+        row.appendChild(domainCell);
+        tableBody.appendChild(row);
+      });
+    });
+  }
 
-        // Fetch the JSON feed and display the "all_domains" field for each item
-        fetch(jsonUrl)
-            .then(response => response.json())
-            .then(data => {
-                const dataList = document.getElementById("data-list");
-                data.forEach(item => {
-                    const domains = item.data.leaf_cert.all_domains;
-                    domains.forEach(domain => {
-                        const li = document.createElement("li");
-                        li.textContent = domain;
-                        dataList.appendChild(li);
-                    });
-                });
-            });
+  function filterTable() {
+    const keyword = keywordInput.value.trim().toLowerCase();
+    const rows = tableBody.querySelectorAll("tr");
 
-        // Search function to filter the list by user input
-        function search() {
-            const input = document.getElementById("search-input");
-            const filter = input.value.toUpperCase();
-            const list = document.getElementById("data-list");
-            const items = list.getElementsByTagName("li");
-            for (let i = 0; i < items.length; i++) {
-                const text = items[i].textContent.toUpperCase();
-                if (text.indexOf(filter) > -1) {
-                    items[i].style.display = "";
-                } else {
-                    items[i].style.display = "none";
-                }
-            }
+    rows.forEach((row) => {
+      const domain = row.querySelector("td").textContent.trim().toLowerCase();
+      const shouldHide = !domain.includes(keyword);
+      row.style.display = shouldHide ? "none" : "";
+    });
+  }
+
+  const ws = new WebSocket("wss://lobster-app-d249x.ondigitalocean.app/");
+
+  ws.onopen = () => {
+    console.log("WebSocket is open now.");
+    ws.send("Hello Server!");
+  };
+
+  // listen for messages from the websocket
+  ws.onmessage = function (event) {
+    var message = JSON.parse(event.data);
+    if (message.message_type === "certificate_update") {
+      // get the domains from the websocket message
+      var domains = message.data.leaf_cert.all_domains;
+
+      // add the domains to the table data
+      for (var i = 0; i < domains.length; i++) {
+        var domain = domains[i];
+        if (tableData.indexOf(domain) === -1) {
+          tableData.push(domain);
         }
-    </script>
-</body>
+      }
+
+      // clear the table and repopulate with the updated data
+      var tableBody = document.getElementById("domainTableBody");
+      tableBody.innerHTML = "";
+
+      for (var i = 0; i < tableData.length; i++) {
+        var row = tableBody.insertRow();
+        var cell = row.insertCell();
+        cell.innerHTML = tableData[i];
+      }
+
+      // Add the search filter to the HTML table
+      var input = document.getElementById("searchInput");
+      input.addEventListener("keyup", function () {
+        var filter = input.value.toUpperCase();
+        var table = document.getElementById("domainTable");
+        var tr = table.getElementsByTagName("tr");
+        for (var i = 0; i < tr.length; i++) {
+          var td = tr[i].getElementsByTagName("td")[0];
+          if (td) {
+            var txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+              tr[i].style.display = "";
+            } else {
+              tr[i].style.display = "none";
+            }
+          }
+        }
+      });
+    }
+  };
+
+  ws.onerror = (error) => {
+    console.error("WebSocket Error:", error);
+  };
+
+  ws.onclose = () => {
+    console.log("WebSocket is closed now.");
+  };
+</script>
+  </body>
 </html>
