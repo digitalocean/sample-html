@@ -1,15 +1,92 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>#000000</title>
-    <link type="image/x-icon" rel="shortcut icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAHklEQVQ4T2NkYGD4z0ABYBw1gGE0DBhGw4BhWIQBAE5OEAELnjVHAAAAAElFTkSuQmCC">
+  <title>Coming Soon - North Prairie Medical Group</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .container {
+      text-align: center;
+      padding: 20px;
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .logo {
+      width: 100px;
+      height: 100px;
+      margin-bottom: 20px;
+    }
+
+    .title {
+      font-size: 24px;
+      font-weight: bold;
+      color: #333333;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      font-size: 18px;
+      color: #666666;
+      margin-bottom: 20px;
+    }
+
+    .countdown {
+      font-size: 28px;
+      color: #ff0000;
+      margin-bottom: 30px;
+    }
+
+    .contact {
+      font-size: 16px;
+      color: #999999;
+    }
+  </style>
 </head>
 <body>
-comming soon!    
-</body>
+  <div class="container">
+    <img class="logo" src="north_prairie_logo.png" alt="North Prairie Medical Group Logo">
+    <div class="title">North Prairie Medical Group</div>
+    <div class="subtitle">Coming Soon</div>
+    <div class="countdown">Launching in:</div>
+    <div id="countdown-timer"></div>
+    <div class="contact">For inquiries, please contact: <a href="mailto:info@northprairiemedical.com">info@northprairiemedical.com</a></div>
+  </div>
 
+  <script>
+    // Set the launch date and time (YYYY-MM-DD HH:MM:SS format)
+    var launchDate = new Date("2023-08-15 09:00:00").getTime();
+
+    // Update the countdown every second
+    var countdown = setInterval(function() {
+      var now = new Date().getTime();
+      var timeRemaining = launchDate - now;
+
+      // Calculate days, hours, minutes, and seconds
+      var days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+      var hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+      // Display the countdown timer
+      document.getElementById("countdown-timer").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+
+      // If the countdown is over, display a message
+      if (timeRemaining < 0) {
+        clearInterval(countdown);
+        document.getElementById("countdown-timer").innerHTML = "Now Open!";
+      }
+    }, 1000);
+  </script>
+</body>
 </html>
