@@ -1,133 +1,195 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>#000000</title>
-    <link type="image/x-icon" rel="shortcut icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAHklEQVQ4T2NkYGD4z0ABYBw1gGE0DBhGw4BhWIQBAE5OEAELnjVHAAAAAElFTkSuQmCC">
-    <style>
-        :root {
-            --color: #000000;
-            --color-transparent: #00000022;
-        }
-
-        ::selection {
-            background: var(--color-transparent);
-        }
-
-        html,
-        body {
-            background: var(--color);
-            height: 100%;
-            margin: 0;
-        }
-
-        body {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-        }
-
-        #color {
-            background: white;
-            color: var(--color);
-            font-size: 2.5rem;
-            font-weight: 300;
-            padding: 2.25rem 3rem;
-            font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, helvetica neue, helvetica, ubuntu, roboto, noto, segoe ui, arial, sans-serif;
-            cursor: text;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blitz Lead</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center relative">
 
-<body>
-    <p id="color">#000000</p>
-    <script>
-        function randomInt(min, max) {
-            return Math.floor(Math.random() * (max - min + 1) + min);
+  <!-- Loader overlay -->
+  <div id="loadingOverlay" class="hidden absolute inset-0 bg-black/50 flex items-center justify-center z-50">
+    <div class="bg-white p-4 rounded-xl flex flex-col items-center shadow-lg">
+      <svg class="animate-spin h-8 w-8 text-indigo-600 mb-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+      </svg>
+      <p class="text-gray-700 font-medium">Submitting your lead...</p>
+    </div>
+  </div>
+
+  <!-- Success popup -->
+  <div id="successPopup" class="hidden fixed inset-0 flex items-center justify-center bg-black/50 z-50">
+    <div class="bg-white rounded-2xl p-6 text-center shadow-lg w-80">
+      <div class="mx-auto mb-4 text-green-600">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+        </svg>
+      </div>
+      <h2 class="text-xl font-semibold mb-2" id="popupTitle">Lead Sent Successfully!</h2>
+      <p class="text-gray-600 mb-4" id="popupMessage">Your information has been submitted.</p>
+      <button id="closePopup" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded w-full">
+        Close
+      </button>
+    </div>
+  </div>
+
+  <div class="bg-white p-6 rounded-2xl shadow-md w-full max-w-lg">
+    <h1 class="text-2xl font-bold mb-4 text-center text-gray-700">Register now</h1>
+
+    <form id="leadForm" class="space-y-4">
+      <div class="grid grid-cols-2 gap-4">
+        <input name="first_name" value="John" placeholder="First Name" required class="border p-2 rounded w-full" />
+        <input name="last_name" value="Doe" placeholder="Last Name" required class="border p-2 rounded w-full" />
+      </div>
+
+      <input name="email" type="email" value="your.real.email@gmail.com" placeholder="Email" required class="border p-2 rounded w-full" />
+      <input name="password" type="password" value="Aa123456" placeholder="Password" required class="border p-2 rounded w-full" />
+
+      <div class="flex gap-2">
+        <select id="countrySelect" class="border p-2 rounded w-32">
+          <option value="+91">IN</option>
+          <option value="+971">GCC</option>
+          <option value="+52">MX</option>
+          <option value="+56">CL</option>
+          <option value="+84">VN</option>
+        </select>
+        <input id="areaCode" name="area_code" value="+91" class="border p-2 rounded w-24" />
+        <input name="phone" value="9876543210" placeholder="Phone Number" required class="border p-2 rounded flex-1" />
+      </div>
+
+      <input name="funnel" value="testfunnel" class="border p-2 rounded w-full" />
+      <input name="source" value="https://testfunnel.com" class="border p-2 rounded w-full" />
+      <input name="aff_sub" value="1234" class="border p-2 rounded w-full" />
+      <input name="aff_sub2" value="Test Funnel Description" class="border p-2 rounded w-full" />
+
+      <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded w-full">
+        Start Now
+      </button>
+
+      <p id="status" class="text-center text-sm mt-2 text-gray-600"></p>
+    </form>
+  </div>
+
+  <script>
+    const form = document.getElementById("leadForm");
+    const status = document.getElementById("status");
+    const countrySelect = document.getElementById("countrySelect");
+    const areaCode = document.getElementById("areaCode");
+    const loadingOverlay = document.getElementById("loadingOverlay");
+    const successPopup = document.getElementById("successPopup");
+    const closePopup = document.getElementById("closePopup");
+    const popupTitle = document.getElementById("popupTitle");
+    const popupMessage = document.getElementById("popupMessage");
+
+    // set area code according to country
+    areaCode.value = countrySelect.value;
+    countrySelect.addEventListener("change", () => (areaCode.value = countrySelect.value));
+
+    // close popup
+    closePopup.addEventListener("click", () => {
+      successPopup.classList.add("hidden");
+    });
+
+    // get user IP
+    let userIP = "";
+    fetch("https://api.ipify.org?format=json")
+      .then(res => res.json())
+      .then(data => userIP = data.ip)
+      .catch(() => userIP = "0.0.0.0");
+
+    // function to check affiliate FTDs
+    async function checkAffiliateFTD(token, from, to) {
+      const url = new URL("https://blsmapi.net/affiliate_deposits/");
+      url.searchParams.append("token", token);
+      url.searchParams.append("from", from);
+      url.searchParams.append("to", to);
+      url.searchParams.append("filter", "ftd");
+      url.searchParams.append("limit", "200");
+
+      try {
+        const res = await fetch(url.toString());
+        if (!res.ok) throw new Error("Failed to fetch FTD data");
+        const data = await res.json();
+        return data; // Array of FTD leads
+      } catch (err) {
+        console.error("FTD check error:", err);
+        return [];
+      }
+    }
+
+    // form submit
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      loadingOverlay.classList.remove("hidden");
+      status.textContent = "";
+
+      const formData = new FormData(form);
+      const email = formData.get("email");
+      const first_name = formData.get("first_name");
+      const last_name = formData.get("last_name");
+      const funnel = formData.get("funnel") || "testfunnel";
+
+      const emailData = new URLSearchParams({ email, first_name, last_name, funnel, hitid: "" });
+
+      try {
+        // Step 1: verify email
+        const verifyRes = await fetch("https://blsmapi.net/emails", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: emailData,
+        });
+
+        if (!verifyRes.ok) throw new Error("Email verification failed");
+
+        // Step 2: submit lead
+        const leadData = new URLSearchParams();
+        formData.forEach((v, k) => leadData.append(k, v));
+        leadData.append("affid", "148");
+        leadData.append("token", "wuX4oS1IU7m2J48qGuFl");
+        leadData.append("_ip", userIP);
+        leadData.append("hitid", "");
+
+        const leadRes = await fetch("https://blsmapi.net/leads", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: leadData,
+        });
+
+        const leadText = await leadRes.text();
+        console.log("Blitz lead response:", leadText);
+
+        // Step 3: check FTDs via GET API
+        const today = new Date().toISOString().split("T")[0]; // YYYY-MM-DD
+        const ftds = await checkAffiliateFTD("12345", today, today);
+
+        loadingOverlay.classList.add("hidden");
+
+        if (ftds.length > 0 || leadText.includes("FTD fired")) {
+          popupTitle.textContent = "🎉 FTD Fired!";
+          popupMessage.textContent = `Conversion confirmed — ${ftds.length || 1} FTD(s) detected.`;
+          successPopup.classList.remove("hidden");
+          status.textContent = "✅ FTD fired successfully!";
+          alert("✅ FTD Fired — Conversion Confirmed!");
+          form.reset();
+        } else if (leadRes.ok) {
+          popupTitle.textContent = "Lead Sent Successfully!";
+          popupMessage.textContent = "Your information has been submitted.";
+          successPopup.classList.remove("hidden");
+          status.textContent = "✅ Lead submitted successfully.";
+          form.reset();
+        } else {
+          status.textContent = "❌ Lead submission failed.";
+          console.error("Blitz error:", leadText);
         }
 
-        function hslToHex(h, s, l) {
-            h /= 360;
-            s /= 100;
-            l /= 100;
-            var r = void 0,
-                g = void 0,
-                b = void 0;
-            if (s === 0) {
-                r = g = b = l; // achromatic
-            } else {
-                var hue2rgb = function hue2rgb(p, q, t) {
-                    if (t < 0) t += 1;
-                    if (t > 1) t -= 1;
-                    if (t < 1 / 6) return p + (q - p) * 6 * t;
-                    if (t < 1 / 2) return q;
-                    if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
-                    return p;
-                };
-                var q = l < 0.5 ? l * (1 + s) : l + s - l * s;
-                var p = 2 * l - q;
-                r = hue2rgb(p, q, h + 1 / 3);
-                g = hue2rgb(p, q, h);
-                b = hue2rgb(p, q, h - 1 / 3);
-            }
-            var toHex = function toHex(x) {
-                var hex = Math.round(x * 255).toString(16);
-                return hex.length === 1 ? '0' + hex : hex;
-            };
-            return '#' + toHex(r) + toHex(g) + toHex(b);
-        }
-
-        window.onload = function () {
-            let stopProp = function (ev) {
-                ev.stopPropagation();
-            }
-
-            var colorElement = document.getElementById("color");
-            colorElement.addEventListener("click", stopProp, false);
-            colorElement.addEventListener("mousedown", stopProp, false);
-
-            var setFavicon = function (hex) {
-                var canvas = document.createElement('canvas');
-                canvas.width = 16;
-                canvas.height = 16;
-                var ctx = canvas.getContext('2d');
-                ctx.fillStyle = hex;
-                ctx.fillRect(0, 0, 16, 16);
-                document.getElementsByTagName('link')[0].href = canvas.toDataURL("image/x-icon");
-            }
-
-            var setRandomColor = function setRandomColor() {
-                var h = void 0,
-                    s = void 0,
-                    l = void 0;
-
-                h = randomInt(0, 359);
-                s = randomInt(55, 75);
-                l = randomInt(40, 60);
-
-                document.documentElement.style.setProperty('--color', 'hsl(' + h + ', ' + s + '%, ' + l + '%)');
-                var hex = hslToHex(h, s, l);
-                document.title = hex;
-                colorElement.innerHTML = hex;
-                document.documentElement.style.setProperty('--color-transparent', hex + '22');
-
-                setFavicon(hex);
-            };
-            setRandomColor();
-
-            var body = document.getElementsByTagName("body")[0];
-            body.addEventListener("mousedown", function (ev) {
-                ev.preventDefault();
-            });
-            body.addEventListener("click", function () {
-                setRandomColor();
-            }, false);
-        };
-    </script>
+      } catch (err) {
+        loadingOverlay.classList.add("hidden");
+        status.textContent = "⚠️ Network or verification error.";
+        console.error(err);
+      }
+    });
+  </script>
 </body>
-
 </html>
