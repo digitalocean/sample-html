@@ -1,133 +1,847 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fitni — Personal Training Concept</title>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>#000000</title>
-    <link type="image/x-icon" rel="shortcut icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAHklEQVQ4T2NkYGD4z0ABYBw1gGE0DBhGw4BhWIQBAE5OEAELnjVHAAAAAElFTkSuQmCC">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
     <style>
-        :root {
-            --color: #000000;
-            --color-transparent: #00000022;
-        }
+      :root {
+        --bg: #f4f5fb;
+        --surface: #ffffff;
+        --primary: #2563eb;
+        --primary-soft: #e5edff;
+        --text: #0f172a;
+        --muted: #6b7280;
+        --border: #e5e7eb;
+        --success-bg: #ecfdf3;
+        --success-border: #bbf7d0;
+        --success-text: #166534;
+        --error-bg: #fef2f2;
+        --error-border: #fecaca;
+        --error-text: #b91c1c;
+      }
 
-        ::selection {
-            background: var(--color-transparent);
-        }
+      * {
+        box-sizing: border-box;
+      }
 
-        html,
-        body {
-            background: var(--color);
-            height: 100%;
-            margin: 0;
-        }
+      body {
+        margin: 0;
+        font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont,
+          sans-serif;
+        background: radial-gradient(
+            circle at top left,
+            #dbeafe 0,
+            transparent 45%
+          ),
+          radial-gradient(circle at bottom right, #fee2e2 0, transparent 45%),
+          #f9fafb;
+        color: var(--text);
+      }
 
-        body {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-        }
+      .page {
+        min-height: 100vh;
+        padding: 24px 16px 40px;
+        display: flex;
+        flex-direction: column;
+      }
 
-        #color {
-            background: white;
-            color: var(--color);
-            font-size: 2.5rem;
-            font-weight: 300;
-            padding: 2.25rem 3rem;
-            font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, helvetica neue, helvetica, ubuntu, roboto, noto, segoe ui, arial, sans-serif;
-            cursor: text;
+      .shell {
+        max-width: 960px;
+        margin: 0 auto;
+        flex: 1;
+        width: 100%;
+      }
+
+      header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 28px;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-weight: 600;
+        font-size: 1.1rem;
+        letter-spacing: -0.03em;
+      }
+
+      .logo-dot {
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #2563eb, #22c55e);
+        box-shadow: 0 0 0 6px rgba(37, 99, 235, 0.12);
+      }
+
+      .header-right {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .header-pill {
+        font-size: 0.78rem;
+        color: var(--muted);
+        padding: 4px 12px;
+        border-radius: 999px;
+        border: 1px solid rgba(148, 163, 184, 0.4);
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(6px);
+      }
+
+      .lang-toggle {
+        display: inline-flex;
+        align-items: center;
+        border-radius: 999px;
+        padding: 2px;
+        background: rgba(15, 23, 42, 0.04);
+        border: 1px solid rgba(148, 163, 184, 0.4);
+      }
+
+      .lang-btn {
+        border: none;
+        background: transparent;
+        padding: 3px 8px;
+        font-size: 0.75rem;
+        cursor: pointer;
+        border-radius: 999px;
+        color: #6b7280;
+      }
+
+      .lang-btn.active {
+        background: #ffffff;
+        color: #111827;
+        box-shadow: 0 0 0 1px rgba(148, 163, 184, 0.4);
+      }
+
+      main {
+        display: grid;
+        grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+        gap: 40px;
+        align-items: center;
+      }
+
+      @media (max-width: 820px) {
+        main {
+          grid-template-columns: 1fr;
+          gap: 24px;
         }
+      }
+
+      .intro {
+        margin-bottom: 18px;
+      }
+
+      .tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 4px 10px;
+        border-radius: 999px;
+        border: 1px solid rgba(148, 163, 184, 0.5);
+        background: rgba(249, 250, 251, 0.9);
+        font-size: 0.8rem;
+        color: var(--muted);
+        margin-bottom: 8px;
+      }
+
+      .tag-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: #22c55e;
+      }
+
+      h1 {
+        font-size: 2.1rem;
+        line-height: 1.15;
+        margin: 0 0 10px;
+        letter-spacing: -0.03em;
+      }
+
+      h1 span {
+        color: #2563eb;
+      }
+
+      .subtitle {
+        font-size: 0.96rem;
+        color: var(--muted);
+        max-width: 480px;
+        margin-bottom: 10px;
+      }
+
+      .subtitle strong {
+        color: #374151;
+      }
+
+      .note {
+        font-size: 0.8rem;
+        color: #9ca3af;
+      }
+
+      .join-card {
+        margin-top: 22px;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.98),
+          rgba(248, 250, 252, 0.96)
+        );
+        border-radius: 18px;
+        border: 1px solid rgba(209, 213, 219, 0.9);
+        padding: 18px 16px 16px;
+        box-shadow: 0 14px 40px rgba(15, 23, 42, 0.06);
+        max-width: 430px;
+        backdrop-filter: blur(4px);
+      }
+
+      .join-title {
+        font-size: 1rem;
+        font-weight: 600;
+        margin-bottom: 4px;
+      }
+
+      .join-subtitle {
+        font-size: 0.82rem;
+        color: var(--muted);
+        margin-bottom: 14px;
+      }
+
+      .role-toggle {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        margin-bottom: 14px;
+        padding: 4px;
+        background: #f9fafb;
+        border-radius: 999px;
+        border: 1px solid #e5e7eb;
+      }
+
+      .role-btn {
+        border-radius: 999px;
+        border: none;
+        padding: 8px 4px;
+        font-size: 0.82rem;
+        font-weight: 500;
+        cursor: pointer;
+        background: transparent;
+        color: var(--muted);
+        transition: 0.15s ease;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2px;
+      }
+
+      .role-btn span {
+        font-size: 0.74rem;
+        color: #9ca3af;
+      }
+
+      .role-btn.active {
+        background: #ffffff;
+        color: #1d4ed8;
+        box-shadow: 0 5px 14px rgba(37, 99, 235, 0.22);
+      }
+
+      .field-label {
+        text-align: left;
+        font-size: 0.8rem;
+        font-weight: 500;
+        color: var(--muted);
+        margin-bottom: 6px;
+      }
+
+      .input {
+        width: 100%;
+        padding: 11px 12px;
+        border-radius: 12px;
+        border: 1px solid #d1d5db;
+        font-size: 0.9rem;
+        outline: none;
+        transition: 0.15s;
+        background: #f9fafb;
+      }
+
+      .input:focus {
+        border-color: var(--primary);
+        background: #ffffff;
+        box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.25);
+      }
+
+      .field-caption {
+        font-size: 0.72rem;
+        color: #9ca3af;
+        margin-top: 4px;
+        margin-bottom: 10px;
+      }
+
+      .cta {
+        width: 100%;
+        padding: 11px 14px;
+        border-radius: 14px;
+        background: linear-gradient(90deg, #2563eb, #1d4ed8);
+        color: #ffffff;
+        border: none;
+        font-size: 0.95rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.15s ease;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+      }
+
+      .cta:hover {
+        filter: brightness(1.03);
+        box-shadow: 0 10px 28px rgba(37, 99, 235, 0.35);
+        transform: translateY(-1px);
+      }
+
+      .cta[disabled] {
+        opacity: 0.6;
+        cursor: default;
+        box-shadow: none;
+        transform: none;
+      }
+
+      .fine-print {
+        margin-top: 8px;
+        font-size: 0.72rem;
+        color: #9ca3af;
+      }
+
+      .fine-print strong {
+        color: #4b5563;
+      }
+
+      .status-message {
+        margin-top: 10px;
+        font-size: 0.78rem;
+        border-radius: 12px;
+        padding: 8px 10px;
+        display: none;
+      }
+
+      .status-success {
+        background: var(--success-bg);
+        border: 1px solid var(--success-border);
+        color: var(--success-text);
+      }
+
+      .status-error {
+        background: var(--error-bg);
+        border: 1px solid var(--error-border);
+        color: var(--error-text);
+      }
+
+      .hidden {
+        display: none !important;
+      }
+
+      .image-side {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .image-note {
+        font-size: 0.8rem;
+        color: var(--muted);
+      }
+
+      .hero-image {
+        border-radius: 22px;
+        overflow: hidden;
+        background: #e5e7eb;
+        height: 320px;
+        box-shadow: 0 18px 40px rgba(15, 23, 42, 0.18);
+      }
+
+      .hero-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transform: scale(1.02);
+      }
+
+      .image-caption {
+        font-size: 0.75rem;
+        color: #9ca3af;
+      }
+
+      @media (max-width: 820px) {
+        .hero-image {
+          height: 260px;
+          margin-top: 6px;
+        }
+        .image-side {
+          margin-top: 10px;
+        }
+      }
+
+      .footer {
+        margin-top: 24px;
+        text-align: center;
+        font-size: 0.78rem;
+        color: #9ca3af;
+      }
+
+      /* RTL tweaks */
+      body.rtl {
+        direction: rtl;
+      }
+
+      body.rtl header {
+        direction: ltr; /* keep header layout sane */
+      }
+
+      body.rtl .intro,
+      body.rtl .join-card,
+      body.rtl .image-side {
+        text-align: right;
+      }
+
+      body.rtl .field-label,
+      body.rtl .field-caption,
+      body.rtl .fine-print,
+      body.rtl .status-message {
+        text-align: right;
+      }
     </style>
-</head>
+  </head>
 
-<body>
-    <p id="color">#000000</p>
+  <body>
+    <div class="page">
+      <div class="shell">
+        <header>
+          <div class="logo">
+            <div class="logo-dot"></div>
+            Fitni
+          </div>
+          <div class="header-right">
+            <div class="lang-toggle">
+              <button id="langEn" class="lang-btn active">EN</button>
+              <button id="langAr" class="lang-btn">العربية</button>
+            </div>
+            <div class="header-pill" data-i18n="header_pill">
+              Concept test • Not launched yet
+            </div>
+          </div>
+        </header>
+
+        <main>
+          <!-- LEFT: intro + join card -->
+          <section>
+            <div class="intro">
+              <div class="tag" data-i18n="tag">
+                <div class="tag-dot"></div>
+                We’re exploring an idea
+              </div>
+
+              <h1 data-i18n="heading">
+                Would you use an app to <span>book personal trainers</span> in
+                Lebanon?
+              </h1>
+
+              <p class="subtitle" data-i18n="subtitle">
+                We’re thinking about building an app that connects people with
+                trusted personal trainers for home, gym, outdoor, or online
+                sessions. This is <strong>just a simple test page</strong>
+                to see if people are interested.
+              </p>
+
+              <p class="note" data-i18n="note">
+                If there’s enough interest, we’ll build it. Your signal helps us
+                decide.
+              </p>
+            </div>
+
+            <div class="join-card">
+              <div class="join-title" data-i18n="join_title">
+                Feel like you might use this?
+              </div>
+              <div class="join-subtitle" data-i18n="join_subtitle">
+                If you like the idea, leave your contact so we can notify you
+                only if we move forward.
+              </div>
+
+              <div class="role-toggle" id="roleToggle">
+                <button type="button" class="role-btn active" id="traineeBtn">
+                  <span data-i18n="role_trainee_main">I want to train</span>
+                  <span data-i18n="role_trainee_sub"
+                    >Looking for a trainer</span
+                  >
+                </button>
+                <button type="button" class="role-btn" id="coachBtn">
+                  <span data-i18n="role_coach_main"
+                    >I’m a personal trainer</span
+                  >
+                  <span data-i18n="role_coach_sub">Coach / PT</span>
+                </button>
+              </div>
+
+              <!-- Form controls wrapper so we can hide it on success -->
+              <div id="formControls">
+                <div>
+                  <div class="field-label" data-i18n="label_contact">
+                    Email or WhatsApp number
+                  </div>
+                  <input
+                    id="contactInput"
+                    class="input"
+                    placeholder="e.g. name@email.com or 76123456 / +961 76 123 456"
+                  />
+                  <div class="field-caption" data-i18n="field_caption">
+                    Lebanese numbers like <strong>76123456</strong> or
+                    <strong>+961 76 123 456</strong> are supported. Or enter
+                    your email.
+                  </div>
+                </div>
+
+                <button
+                  class="cta"
+                  id="joinBtn"
+                  disabled
+                  data-i18n="btn_interested"
+                >
+                  I’m interested →
+                </button>
+              </div>
+
+              <!-- Inline success / error message -->
+              <div id="statusMsg" class="status-message"></div>
+
+              <div class="fine-print" data-i18n="fine_print">
+                This is not a newsletter and not spam. We only use this to
+                measure interest and might <strong>contact you once</strong> if
+                we decide to launch Fitni.
+              </div>
+            </div>
+          </section>
+
+          <!-- RIGHT: hero image -->
+          <aside class="image-side">
+            <p class="image-note" data-i18n="image_note">
+              Imagine: you open the app, set your goal, and book a vetted
+              trainer that fits your schedule.
+            </p>
+
+            <div class="hero-image">
+              <img
+                src="https://plus.unsplash.com/premium_photo-1726481790100-408b0b3fd120?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt="Female personal trainer with client"
+              />
+            </div>
+
+            <p class="image-caption" data-i18n="image_caption">
+              Example of a personal trainer. In the real Fitni app, you’d see
+              trainer profiles, reviews, and available time slots.
+            </p>
+          </aside>
+        </main>
+      </div>
+
+      <footer class="footer" data-i18n="footer">
+        © 2025 Fitni. All rights reserved. • Made in Lebanon 🇱🇧
+      </footer>
+    </div>
+
+    <!-- Supabase JS client (CDN) -->
+    <script src="https://unpkg.com/@supabase/supabase-js@2.48.0/dist/umd/supabase.js"></script>
+
     <script>
-        function randomInt(min, max) {
-            return Math.floor(Math.random() * (max - min + 1) + min);
+      // 🔑 Replace these with your Supabase project values
+      const SUPABASE_URL = "https://YOUR_PROJECT_ID.supabase.co";
+      const SUPABASE_ANON_KEY = "YOUR_ANON_PUBLIC_KEY";
+
+      const client = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+      const traineeBtn = document.getElementById("traineeBtn");
+      const coachBtn = document.getElementById("coachBtn");
+      const joinBtn = document.getElementById("joinBtn");
+      const contactInput = document.getElementById("contactInput");
+      const formControls = document.getElementById("formControls");
+      const statusMsg = document.getElementById("statusMsg");
+      const roleToggle = document.getElementById("roleToggle");
+      const langEnBtn = document.getElementById("langEn");
+      const langArBtn = document.getElementById("langAr");
+
+      let role = "trainee";
+      let currentLang = "en";
+
+      const translations = {
+        en: {
+          header_pill: "Concept test • Not launched yet",
+          tag: "We’re exploring an idea",
+          heading:
+            "Would you use an app to <span>book personal trainers</span> in Lebanon?",
+          subtitle:
+            "We’re thinking about building an app that connects people with trusted personal trainers for home, gym, outdoor, or online sessions. This is <strong>just a simple test page</strong> to see if people are interested.",
+          note: "If there’s enough interest, we’ll build it. Your signal helps us decide.",
+          join_title: "Feel like you might use this?",
+          join_subtitle:
+            "If you like the idea, leave your contact so we can notify you only if we move forward.",
+          role_trainee_main: "I want to train",
+          role_trainee_sub: "Looking for a trainer",
+          role_coach_main: "I’m a personal trainer",
+          role_coach_sub: "Coach / PT",
+          label_contact: "Email or WhatsApp number",
+          contact_placeholder:
+            "e.g. name@email.com or 76123456 / +961 76 123 456",
+          field_caption:
+            "Lebanese numbers like <strong>76123456</strong> or <strong>+961 76 123 456</strong> are supported. Or enter your email.",
+          btn_interested: "I’m interested →",
+          fine_print:
+            "This is not a newsletter and not spam. We only use this to measure interest and might <strong>contact you once</strong> if we decide to launch Fitni.",
+          image_note:
+            "Imagine: you open the app, set your goal, and book a vetted trainer that fits your schedule.",
+          image_caption:
+            "Example of a personal trainer. In the real Fitni app, you’d see trainer profiles, reviews, and available time slots.",
+          footer: "© 2025 Fitni. All rights reserved. • Made in Lebanon 🇱🇧",
+          status_invalid:
+            "Please enter a valid email or Lebanese mobile number (e.g. 76123456 or +961 76 123 456).",
+          status_saving: "Saving your interest in Fitni…",
+          status_success:
+            "You’re in! Thank you for your interest 🙏 We’ll only contact you if we decide to move forward with Fitni.",
+          status_save_error:
+            "Something went wrong while saving. Please try again.",
+          status_network_error: "Network error. Please try again later.",
+        },
+        ar: {
+          header_pill: "تجربة فكرة • بعدنا ما انطلقنا",
+          tag: "عم نجرب فكرة جديدة",
+          heading:
+            "بتستعمل تطبيق ليخلّيك تحجز <span>مدرّب رياضة شخصي</span> بلبنان؟",
+          subtitle:
+            "عم نفكّر نعمل تطبيق يقرّب الناس من مدرّبين رياضيين موثوقين بالبيت، بالنادي، بالهواء الطلق أو أونلاين. هيدي <strong>صفحة تجريبية بسيطة</strong> بس لنعرف إذا في عالم مهتمّة، مش النسخة النهائية من التطبيق.",
+          note: "إذا شفنا إنّو في عالم مهتمّة، منكمّل بالفكرة. إذا لأ، منوقّف هون. رأيك عنجد بيفرق معنا.",
+          join_title: "حاسس إنّو ممكن تستفيد من هيك تطبيق؟",
+          join_subtitle:
+            "إذا الفكرة عجبتك، اترك رقمك أو إيميلك هون، ومنرجع منخبرك بس إذا قرّرنا نطلق Fitni.",
+          role_trainee_main: "بدي أتمرّن",
+          role_trainee_sub: "عم دور على مدرّب",
+          role_coach_main: "أنا مدرّب رياضة",
+          role_coach_sub: "حابب استقبل مشتركين",
+          label_contact: "الإيميل أو رقم الواتساب",
+          contact_placeholder:
+            "مثال: name@email.com أو 76123456 / +961 76 123 456",
+          field_caption:
+            "بيفضَّل رقم لبناني متل <strong>76123456</strong> أو <strong>+961 76 123 456</strong>، أو فيك تحط إيميل إذا أريحلك.",
+          btn_interested: "أنا مهتم →",
+          fine_print:
+            "مش اشتراك بنشرة بريدية ومش إعلانات. منستعمل هالمعلومات بس لنعرف قديش في اهتمام، وممكن <strong>نتواصل معك مرة وحدة</strong> إذا قرّرنا نطلق Fitni.",
+          image_note:
+            "تخيّل: بتفتح التطبيق، بتختار هدفك، وبتحجز مدرّب على قياس وقتك ومطرحك.",
+          image_caption:
+            "هاي مجرّد صورة مثال عن مدرّبة رياضة. بالنسخة الحقيقية من Fitni رح تشوف بروفايلات، تقييمات، وأوقات متاحة للحجز.",
+          footer: "© ٢٠٢٥ Fitni. كل الحقوق محفوظة. • مصنوع بحب بلبنان 🇱🇧",
+          status_invalid:
+            "تأكّد إنّو الإيميل صحيح أو رقم الموبايل لبناني (مثال: 76123456 أو +961 76 123 456).",
+          status_saving: "عم نحفظ اهتمامك بـ Fitni…",
+          status_success:
+            "شكراً كتير 🙏 اهتمامك توصّل. إذا مشينا بالمشروع، رح نرجع نتواصل معك ونخبرك قبل غيرك.",
+          status_save_error: "صار في مشكلة بالحفظ. جرّب بعد شوي لو سمحت.",
+          status_network_error: "في مشكلة بالاتصال. جرّب من جديد بعد شوي.",
+        },
+      };
+
+      function applyLang(lang) {
+        currentLang = lang;
+        const t = translations[lang];
+
+        document.documentElement.lang = lang === "en" ? "en" : "ar";
+        document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+        document.body.classList.toggle("rtl", lang === "ar");
+
+        if (lang === "en") {
+          langEnBtn.classList.add("active");
+          langArBtn.classList.remove("active");
+        } else {
+          langArBtn.classList.add("active");
+          langEnBtn.classList.remove("active");
         }
 
-        function hslToHex(h, s, l) {
-            h /= 360;
-            s /= 100;
-            l /= 100;
-            var r = void 0,
-                g = void 0,
-                b = void 0;
-            if (s === 0) {
-                r = g = b = l; // achromatic
-            } else {
-                var hue2rgb = function hue2rgb(p, q, t) {
-                    if (t < 0) t += 1;
-                    if (t > 1) t -= 1;
-                    if (t < 1 / 6) return p + (q - p) * 6 * t;
-                    if (t < 1 / 2) return q;
-                    if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
-                    return p;
-                };
-                var q = l < 0.5 ? l * (1 + s) : l + s - l * s;
-                var p = 2 * l - q;
-                r = hue2rgb(p, q, h + 1 / 3);
-                g = hue2rgb(p, q, h);
-                b = hue2rgb(p, q, h - 1 / 3);
-            }
-            var toHex = function toHex(x) {
-                var hex = Math.round(x * 255).toString(16);
-                return hex.length === 1 ? '0' + hex : hex;
-            };
-            return '#' + toHex(r) + toHex(g) + toHex(b);
+        document.querySelector('[data-i18n="header_pill"]').textContent =
+          t.header_pill;
+        const tagEl = document.querySelector('[data-i18n="tag"]');
+        if (tagEl && tagEl.childNodes.length > 1) {
+          tagEl.childNodes[1].nodeValue = " " + t.tag;
         }
 
-        window.onload = function () {
-            let stopProp = function (ev) {
-                ev.stopPropagation();
-            }
+        document.querySelector('[data-i18n="heading"]').innerHTML = t.heading;
+        document.querySelector('[data-i18n="subtitle"]').innerHTML = t.subtitle;
+        document.querySelector('[data-i18n="note"]').textContent = t.note;
 
-            var colorElement = document.getElementById("color");
-            colorElement.addEventListener("click", stopProp, false);
-            colorElement.addEventListener("mousedown", stopProp, false);
+        document.querySelector('[data-i18n="join_title"]').textContent =
+          t.join_title;
+        document.querySelector('[data-i18n="join_subtitle"]').textContent =
+          t.join_subtitle;
 
-            var setFavicon = function (hex) {
-                var canvas = document.createElement('canvas');
-                canvas.width = 16;
-                canvas.height = 16;
-                var ctx = canvas.getContext('2d');
-                ctx.fillStyle = hex;
-                ctx.fillRect(0, 0, 16, 16);
-                document.getElementsByTagName('link')[0].href = canvas.toDataURL("image/x-icon");
-            }
+        document.querySelector('[data-i18n="role_trainee_main"]').textContent =
+          t.role_trainee_main;
+        document.querySelector('[data-i18n="role_trainee_sub"]').textContent =
+          t.role_trainee_sub;
+        document.querySelector('[data-i18n="role_coach_main"]').textContent =
+          t.role_coach_main;
+        document.querySelector('[data-i18n="role_coach_sub"]').textContent =
+          t.role_coach_sub;
 
-            var setRandomColor = function setRandomColor() {
-                var h = void 0,
-                    s = void 0,
-                    l = void 0;
+        document.querySelector('[data-i18n="label_contact"]').textContent =
+          t.label_contact;
+        contactInput.placeholder = t.contact_placeholder;
+        document.querySelector('[data-i18n="field_caption"]').innerHTML =
+          t.field_caption;
 
-                h = randomInt(0, 359);
-                s = randomInt(55, 75);
-                l = randomInt(40, 60);
+        document.querySelector('[data-i18n="btn_interested"]').textContent =
+          t.btn_interested;
+        document.querySelector('[data-i18n="fine_print"]').innerHTML =
+          t.fine_print;
 
-                document.documentElement.style.setProperty('--color', 'hsl(' + h + ', ' + s + '%, ' + l + '%)');
-                var hex = hslToHex(h, s, l);
-                document.title = hex;
-                colorElement.innerHTML = hex;
-                document.documentElement.style.setProperty('--color-transparent', hex + '22');
+        document.querySelector('[data-i18n="image_note"]').textContent =
+          t.image_note;
+        document.querySelector('[data-i18n="image_caption"]').textContent =
+          t.image_caption;
 
-                setFavicon(hex);
-            };
-            setRandomColor();
+        document.querySelector('[data-i18n="footer"]').textContent = t.footer;
 
-            var body = document.getElementsByTagName("body")[0];
-            body.addEventListener("mousedown", function (ev) {
-                ev.preventDefault();
-            });
-            body.addEventListener("click", function () {
-                setRandomColor();
-            }, false);
-        };
+        setStatus("", "");
+        updateValidation();
+      }
+
+      function setStatus(type, message) {
+        statusMsg.classList.remove("status-success", "status-error");
+        if (!message) {
+          statusMsg.style.display = "none";
+          return;
+        }
+        statusMsg.style.display = "block";
+
+        if (type === "success") {
+          statusMsg.classList.add("status-success");
+        } else if (type === "error") {
+          statusMsg.classList.add("status-error");
+        }
+        statusMsg.textContent = message;
+      }
+
+      function isValidEmail(value) {
+        const v = value.trim();
+        const at = v.indexOf("@");
+        const dot = v.lastIndexOf(".");
+        return at > 0 && dot > at + 1 && dot < v.length - 1;
+      }
+
+      function isValidLebanesePhone(value) {
+        const digits = value.replace(/\D/g, "");
+
+        if (!digits) return false;
+
+        if (digits.length === 8 && digits.startsWith("7")) {
+          return true;
+        }
+
+        if (digits.startsWith("961")) {
+          if (digits.length === 11 || digits.length === 10) {
+            return true;
+          }
+        }
+
+        return false;
+      }
+
+      function isValidContact(value) {
+        return isValidEmail(value) || isValidLebanesePhone(value);
+      }
+
+      function updateValidation() {
+        const value = contactInput.value.trim();
+        const t = translations[currentLang];
+
+        if (!value) {
+          joinBtn.disabled = true;
+          setStatus("", "");
+          return;
+        }
+
+        if (isValidContact(value)) {
+          joinBtn.disabled = false;
+          setStatus("", "");
+        } else {
+          joinBtn.disabled = true;
+          setStatus("error", t.status_invalid);
+        }
+      }
+
+      contactInput.addEventListener("input", updateValidation);
+
+      traineeBtn.addEventListener("click", () => {
+        role = "trainee";
+        traineeBtn.classList.add("active");
+        coachBtn.classList.remove("active");
+      });
+
+      coachBtn.addEventListener("click", () => {
+        role = "coach";
+        coachBtn.classList.add("active");
+        traineeBtn.classList.remove("active");
+      });
+
+      langEnBtn.addEventListener("click", () => applyLang("en"));
+      langArBtn.addEventListener("click", () => applyLang("ar"));
+
+      joinBtn.addEventListener("click", async () => {
+        const contact = contactInput.value.trim();
+        const t = translations[currentLang];
+
+        if (!isValidContact(contact)) {
+          setStatus("error", t.status_invalid);
+          return;
+        }
+
+        joinBtn.disabled = true;
+        setStatus("success", t.status_saving);
+
+        try {
+          const { error } = await client
+            .from("fitni_leads")
+            .insert([{ role, contact }]);
+
+          if (error) {
+            console.error("Supabase error:", error);
+            joinBtn.disabled = false;
+            setStatus("error", t.status_save_error);
+            return;
+          }
+
+          formControls.classList.add("hidden");
+          roleToggle.classList.add("hidden");
+
+          setStatus("success", t.status_success);
+        } catch (err) {
+          console.error("Unexpected error:", err);
+          joinBtn.disabled = false;
+          setStatus("error", t.status_network_error);
+        }
+      });
+
+      // Initialize default language
+      applyLang("en");
     </script>
-</body>
-
+  </body>
 </html>
